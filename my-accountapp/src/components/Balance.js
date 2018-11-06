@@ -14,52 +14,42 @@ class AccountBalance extends React.Component {
         }
         
     addIncomes = () =>{
-            this.setState({
-               incomes: [...this.state.incomes,{description:this.state.inputDescription,amount:parseInt(this.state.inputAmount)}],
-             })
-    } 
+        let data = {description:this.state.inputDescription,amount:parseInt(this.state.inputAmount)};
+        this.state.incomes.push(data);
+        this.setState({
+          incomes: [...this.state.incomes],
+        });
+        console.log('incomes ',this.state.incomes);
+      }
 
-    sumIncomes = () =>{
-        let newSum=0
+      sumIncomes = () =>{
+        let newSum=0;
+        this.state.incomes.map(income=> {return newSum += parseInt(income.amount);});
+        this.state.incomesSum = newSum;
+        console.log(this.state.incomesSum);
         this.setState({
-            incomesSum:newSum
-            })
-            let y =0;
-            
-             this.state.incomes.map(income=>y+=income.amount);
-            newSum = parseInt(parseInt(y) +parseInt(this.state.inputAmount));
-            console.log(newSum)
-            console.log(this.state.incomesSum)
-    }
-    
-    balance = () => { 
-        let newBalance=0
+          incomesSum: newSum
+        });
+      }
+      addExpenses = () =>{
+        let data = {description:this.state.inputDescription,amount:parseInt(this.state.inputAmount)};
+        this.state.expenses.push(data);
         this.setState({
-            balances:newBalance
-            })
-            let y =0;
-             this.state.incomes.map(income=>y+=income.amount);
-            newBalance = parseInt(parseInt(y) +parseInt(this.state.inputAmount)-10);
-            console.log(newBalance)
-       
-    }; 
+            expenses: [...this.state.expenses],
+        });
+        console.log('expenses ',this.state.expenses);
+      }
 
-    addExpenses = () =>{
+      sumExpenses = () =>{
+        let newSum=0;
+        this.state.expenses.map(expense=> {return newSum += parseInt(expense.amount);});
+        this.state.expensesSum = newSum;
+        console.log(this.state.expensesSum);
         this.setState({
-            expenses: [...this.state.expenses,{description:this.state.inputDescription,amount:parseInt(this.state.inputAmount)}],
-         })
-}
-    sumExpenses = () =>{
-    let newSum1=0
-    this.setState({
-        expensesSum:newSum1
-        })
-        let y =0;
-        this.state.expenses.map(expense=>y+=expense.amount);
-        newSum1 = parseInt(parseInt(y) +parseInt(this.state.inputAmount));
-        console.log(newSum1)
-        console.log(this.state.expensesSum1)
-    }
+            expensesSum: newSum
+        });
+      }
+
 
     userInputDescription = (e) =>{
         this.setState({
@@ -86,8 +76,8 @@ class AccountBalance extends React.Component {
                 </select>
             <button onClick={this.addIncomes}>AddIncomes</button>
             <button onClick={this.addExpenses}>AddExpenses</button>
-            <button onClick={this.sumIncomes}>Add</button>
-            <button onClick={this.balance}>Balance</button>
+            <button onClick={this.sumIncomes}>SumIncome</button>
+            <button onClick={this.sumExpenses}>SumExpenses</button>
           
             </div>
             <div className="output">
@@ -113,11 +103,11 @@ class AccountBalance extends React.Component {
                         </div>
                     })
                 }
-                <h5>{this.state.expensesSum1}</h5>
+                <h5>{this.state.expensesSum}</h5>
             </div>
             <div className="incomesOutput">
                 <h4>Balance:</h4>
-                <h5>{this.state.balances}</h5>
+                <h5>{this.state.incomesSum-this.state.expensesSum}</h5>
             </div>
             </div>
           </div>
