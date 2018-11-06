@@ -107,6 +107,8 @@ class AccountBalance extends React.Component {
             inputAmount:e.target.value
             })
     }
+   
+    
 
     render() {
         return (
@@ -116,7 +118,7 @@ class AccountBalance extends React.Component {
               <input type="text" onChange={this.userInputDescription} />
             Amount:
               <input type="text" onChange={this.userInputAmount} />
-                <select>
+                <select id="transaction">
                     <option value="Expenses">Expences</option>
                     <option value="Incomes">Incomes</option>
                 </select>
@@ -132,10 +134,10 @@ class AccountBalance extends React.Component {
                 {
                     this.state.incomes.map((income,i) => {
                         return <div className="test" key ={"id-"+i}>
-                          <span>{income.description}
-                            {income.amount}
-                            {income.newtime}
-                            {income.idOutput}</span>
+                          <span>{income.description}</span>
+                            <span>{income.amount}</span>
+                           <span> {income.newtime}</span>
+                           <span> {income.idOutput}</span>
                         </div> 
                     })
                 }
@@ -145,12 +147,11 @@ class AccountBalance extends React.Component {
                 <h4>Expenses:</h4>
                 {
                     this.state.expenses.map((expense,i) => {
-                        return <div key ={"id-"+i}>
-                            <span>{expense.description}
-                            {expense.amount}
-                            {expense.newtime}
-                            {expense.idOutput}
-                            </span>
+                        return <div className="test" key ={"id-"+i}>
+                            <span>{expense.description}</span>
+                            <span>{expense.amount}</span>
+                            <span>{expense.newtime}</span>
+                            <span> {expense.idOutput}</span>
                         </div>
                     })
                 }
