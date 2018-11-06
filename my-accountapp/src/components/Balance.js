@@ -1,20 +1,63 @@
 import React from 'react';
 import './Balance.css';
+// function for date and time 
+function displayDateTime () {
+    var today = new Date();
+    var year = today.getFullYear();
+    var month = new Array();
+    month[0] = "1";
+    month[1] = "2";
+    month[2] = "3";
+    month[3] = "4";
+    month[4] = "5";
+    month[5] = "6";
+    month[6] = "7";
+    month[7] = "8";
+    month[8] = "9";
+    month[9] = "10";
+    month[10] = "11";
+    month[11] = "12";
+  
+    var d = new Date();
+    var n = month[d.getMonth()];
+   
+    var date = today.getDate();
+    var hours = today.getHours();
+    var minute = today.getMinutes();
+    
+  
+    var newtime =(`${date}/${n}/${year} ${hours}:${minute} `); 
+    return newtime ;
+    
+  }
+
+  function generateID()
+  {
+      var number = Math.random(); 
+      number.toString(10); 
+      var idOutput = number.toString(10).substr(2,7); 
+      return idOutput ;
+  }
 
 class AccountBalance extends React.Component {
     state = {
         inputDescription:"",
         inputAmount:"",
         sum:0,
-        incomes:[{description:"freelancing", amount:5000},{description:"Salaray", amount:2000},{description:"Store", amount:1200}],
-        expenses:[{description:"house", amount:120}],
+        incomes:[{description:"freelancing", amount:5000,newtime:"06/11/2018 15:16",idOutput:"6187563"},
+                {description:"Salaray", amount:2000,newtime:"07/11/2018 15:16",idOutput:"0A45RI1"},
+                {description:"Store", amount:1200,newtime:"06/01/2015 5:16",idOutput:"0H245A1"}],
+        expenses:[{description:"house", amount:120,newtime:"06/11/2018 5:16",idOutput:"2494458"}],
         incomesSum:0,
         sumExpenses:0,
         balances:0
         }
         
     addIncomes = () =>{
-        let data = {description:this.state.inputDescription,amount:parseInt(this.state.inputAmount)};
+        let data = {description:this.state.inputDescription,
+            amount:parseInt(this.state.inputAmount),
+            newtime:displayDateTime(),
+            idOutput:generateID()};
         this.state.incomes.push(data);
         this.setState({
           incomes: [...this.state.incomes],
@@ -32,7 +75,10 @@ class AccountBalance extends React.Component {
         });
       }
       addExpenses = () =>{
-        let data = {description:this.state.inputDescription,amount:parseInt(this.state.inputAmount)};
+        let data = {description:this.state.inputDescription,
+            amount:parseInt(this.state.inputAmount),
+            newtime:displayDateTime(),
+            idOutput:generateID()};
         this.state.expenses.push(data);
         this.setState({
             expenses: [...this.state.expenses],
@@ -87,7 +133,9 @@ class AccountBalance extends React.Component {
                     this.state.incomes.map((income,i) => {
                         return <div className="test" key ={"id-"+i}>
                           <span>{income.description}
-                            {income.amount}</span>
+                            {income.amount}
+                            {income.newtime}
+                            {income.idOutput}</span>
                         </div> 
                     })
                 }
@@ -99,7 +147,10 @@ class AccountBalance extends React.Component {
                     this.state.expenses.map((expense,i) => {
                         return <div key ={"id-"+i}>
                             <span>{expense.description}
-                            {expense.amount}</span>
+                            {expense.amount}
+                            {expense.newtime}
+                            {expense.idOutput}
+                            </span>
                         </div>
                     })
                 }
