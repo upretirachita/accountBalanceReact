@@ -50,7 +50,8 @@ class AccountBalance extends React.Component {
         expenses:[{description:"house", amount:120,newtime:"06/11/2018 5:16",idOutput:"2494458"}],
         incomesSum:0,
         sumExpenses:0,
-        balances:0
+        balances:0,
+        flag:true
         }
         
     addIncomes = () =>{
@@ -107,9 +108,21 @@ class AccountBalance extends React.Component {
             inputAmount:e.target.value
             })
     }
-   
-    
-
+    addIncomesExpenses = () => {
+        if(this.state.flag)
+            {
+                this.addIncomes()
+                this.sumIncomes()
+            }
+        else   
+        {
+            this.addExpenses()
+            this.sumExpenses()
+        } 
+    }
+    onClickOption = (flag) => {
+        this.setState({flag:flag})
+    }
     render() {
         return (
           <div className="App-account">
@@ -118,15 +131,11 @@ class AccountBalance extends React.Component {
               <input type="text" onChange={this.userInputDescription} />
             Amount:
               <input type="text" onChange={this.userInputAmount} />
-                <select id="transaction">
-                    <option value="Expenses">Expences</option>
-                    <option value="Incomes">Incomes</option>
-                </select>
-            <button onClick={this.addIncomes}>AddIncomes</button>
-            <button onClick={this.addExpenses}>AddExpenses</button>
-            <button onClick={this.sumIncomes}>SumIncome</button>
-            <button onClick={this.sumExpenses}>SumExpenses</button>
-          
+                <label htmlFor="income">Income</label>
+                <input type="radio" name="radio" id="income" onChange={() => this.onClickOption(true)}/>
+                <label htmlFor="expense">Expense</label>
+                <input type="radio" name="radio" id="expense" onChange={() => this.onClickOption(false)} />
+                <button onClick={this.addIncomesExpenses}>Add</button>
             </div>
             <div className="output">
             <div className="incomesOutput">
