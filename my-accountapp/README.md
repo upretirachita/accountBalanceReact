@@ -1,2 +1,2 @@
 
-![grab-landing-page](https://github.com/upretirachita/accountBalanceReact/my-accountapp/video.gif" type="video/gif)
+![grab-landing-page](https://github.com/upretirachita/accountBalanceReact/my-accountapp/video.gif)
