@@ -1,6 +1,9 @@
-<<<<<<< HEAD
-![ ]()
-=======
-Account Balance App in React 
-Simple calculation for Learnign React 
->>>>>>> b84cd227538a7c40795807edb11266a34925b04c
+# accountBalanceReact
+
+<!-- blank line -->
+<figure class="video_container">
+  <video controls="true" allowfullscreen="true" poster="path/to/poster_image.png">
+    <source src="https://github.com/upretirachita/accountBalanceReact/my-accountapp/video.mp4" type="video/mp4">
+  </video>
+</figure>
+<!-- blank line -->
