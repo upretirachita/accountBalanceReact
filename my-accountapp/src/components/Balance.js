@@ -69,7 +69,7 @@ class AccountBalance extends React.Component {
       sumIncomes = () =>{
         let newSum=0;
         this.state.incomes.map(income=> {return newSum += parseInt(income.amount);});
-        this.state.incomesSum = newSum;
+       // this.state.incomesSum = newSum;
         console.log(this.state.incomesSum);
         this.setState({
           incomesSum: newSum
@@ -90,7 +90,7 @@ class AccountBalance extends React.Component {
       sumExpenses = () =>{
         let newSum=0;
         this.state.expenses.map(expense=> {return newSum += parseInt(expense.amount);});
-        this.state.expensesSum = newSum;
+       // this.state.expensesSum = newSum;
         console.log(this.state.expensesSum);
         this.setState({
             expensesSum: newSum
